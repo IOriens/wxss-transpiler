@@ -1,0 +1,23 @@
+{
+  "name": "wxss-transpiler",
+  "version": "0.0.1",
+  "description": "transpile wxss",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "wxss",
+    "wcsc",
+    "compiler",
+    "transpiler"
+  ],
+  "repository": "IOriens/wxss-transpiler",
+  "homepage": "https://github.com/IOriens/wxss-transpiler",
+  "author": "Junjie Ding  <djjoriens@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "postcss": "^6.0.9",
+    "postcss-wxss": "0.0.1"
+  }
+}
