@@ -1,6 +1,6 @@
 {
   "name": "wxss-transpiler",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "transpile wxss",
   "main": "index.js",
   "scripts": {
