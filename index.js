@@ -43,5 +43,5 @@ module.exports = function (files, opts) {
   return postcss([wxssPlugin(opts)])
     .process(cssSource)
     .then(res => res.css)
-    .catch(err => console.log(err))
+    .catch(err => console.log('postcss err:', err))
 }

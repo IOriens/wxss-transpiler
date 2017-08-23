@@ -7,7 +7,10 @@ const minify = (function () {
   const minifier = new CleanCSS(cleanCSSOpt)
   return function (css) {
     const res = minifier.minify(css)
-    if (res.warnings.length) throw res.warnings
+    if (res.warnings && res.warnings.length) {
+      console.log('Cleancss Warning: ' + res.warnings)
+    }
+    if (res.errors && res.errors.length) throw new Error('Cleancss Error: ' + res.errors.join())
     return minifier.minify(css).styles
   }
 })()
