@@ -1,6 +1,6 @@
 {
   "name": "wxss-transpiler",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "transpile wxss",
   "main": "index.js",
   "scripts": {
@@ -20,7 +20,7 @@
     "clean-css": "^4.1.7",
     "jest": "^20.0.4",
     "postcss": "^6.0.9",
-    "postcss-wxss": "0.0.1",
+    "postcss-wxss": "0.0.2",
     "standard": "^10.0.3"
   }
 }

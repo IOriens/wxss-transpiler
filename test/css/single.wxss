@@ -2,6 +2,14 @@ page {
   font-size: 20rpx;
 }
 
-icon {}
+icon {
+  font-size: 20rpx;
+}
 
-.page {}
+.page {
+  font-size: 20rpx;
+}
+
+wx-page {
+  font-size: 20rpx;
+}
