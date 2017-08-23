@@ -1,10 +1,7 @@
 # wxss-transpiler [![Build Status][ci-img]][ci]
 
 Port of wcsc.exe to Javascript.
-
-[ci-img]:  https://travis-ci.org/IOriens/wxss-transpiler.svg
-[ci]:      https://travis-ci.org/IOriens/wxss-transpiler
-
+> Test only works on macOS, but this transpiler itself works universally, even on linux.
 ## Usage
 
 ```sh
@@ -12,9 +9,9 @@ npm i wxss-transpiler
 ```
 
 ```js
-const transpiler = require('wxss-transpiler')
+const  transpile = require('wxss-transpiler')
 const fileList = ['./css/single.wxss']
-transpiler(fileList).then(res => console.log(res))
+transpile(fileList).then(res => console.log(res))
 ```
 
 ## todo
@@ -24,3 +21,6 @@ transpiler(fileList).then(res => console.log(res))
 ## Liscense
 
 MIT
+
+[ci-img]:  https://travis-ci.org/IOriens/wxss-transpiler.svg
+[ci]:      https://travis-ci.org/IOriens/wxss-transpiler

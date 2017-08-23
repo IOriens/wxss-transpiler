@@ -1,0 +1,4 @@
+A {
+  font-size: 2rpx;
+}
+@import 'B.wxss'
