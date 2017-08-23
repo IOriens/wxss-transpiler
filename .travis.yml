@@ -4,3 +4,7 @@ node_js:
   - stable
   - "6"
   - "4"
+sudo: required
+before_script:
+  - sudo apt-get update
+  - sudo apt-get install libc6:i386 libstdc++6:i386
