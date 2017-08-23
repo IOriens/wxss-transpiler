@@ -20,21 +20,26 @@ const exec = require('child_process').exec
 const execp = function (cmd) {
   return new Promise((resolve, reject) => {
     exec(cmd, (err, stdout, stderr) => {
-      if (err) reject(err)
-      if (stderr) reject(stderr)
+      console.log(111, err)
+      console.log(222, stderr)
+      if (err) {
+        reject(err)
+      }
+      if (stderr) {
+        reject(stderr)
+      }
       resolve(stdout)
     })
   })
 }
 
 const testFileList = function (fileList) {
-  return Promise.all([
-    transpiler(fileList),
-    execp(getCMD(fileList))
-  ]).then(res => {
-    console.log(res)
-    expect(minify(res[0])).toEqual(minify(res[1]))
-  })
+  return Promise.all([transpiler(fileList), execp(getCMD(fileList))])
+    .then(res => {
+      console.log(res)
+      expect(minify(res[0])).toEqual(minify(res[1]))
+    })
+    .catch(err => console.log(err))
 }
 
 beforeAll(() => {
