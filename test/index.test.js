@@ -10,7 +10,7 @@ const minify = (function () {
     if (res.warnings && res.warnings.length) {
       console.log('Cleancss Warning: ' + res.warnings)
     }
-    if (res.errors && res.errors.length) throw new Error('Cleancss Error: ' + res.errors.join())
+    if (res.errors && res.errors.length) { throw new Error('Cleancss Error: ' + res.errors.join()) }
     return minifier.minify(css).styles
   }
 })()
@@ -59,6 +59,14 @@ it('compile imported file', () => {
     './css/import/A.wxss',
     './css/import/B.wxss',
     './css/import/C.wxss'
+  ]
+  return testFileList(fileList)
+})
+
+it('compile imported file with absolute path', () => {
+  const fileList = [
+    './css/import-absolute-path/A.wxss',
+    './css/import-absolute-path/B.wxss'
   ]
   return testFileList(fileList)
 })

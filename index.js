@@ -8,14 +8,17 @@ const importRegx = /@import\s+(?:'(.+\.wxss)'|"(.+\.wxss)");?/g
 let fileStack = []
 
 const constructPath = function (file) {
-  const lastFile = fileStack.slice(-1)[0]
   let dir
-  if (lastFile) {
+  const isAbsolutePath = path.isAbsolute(file)
+  const lastFile = fileStack.slice(-1)[0]
+  if (lastFile && !isAbsolutePath) {
     dir = path.dirname(lastFile)
   } else {
     dir = process.cwd()
   }
-  const fullPath = path.resolve(dir, file)
+  const fullPath = isAbsolutePath
+    ? path.join(dir, file)
+    : path.resolve(dir, file)
 
   if (fileStack.indexOf(fullPath) === -1) {
     fileStack.push(fullPath)

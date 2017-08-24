@@ -1,0 +1,5 @@
+@import 'B.wxss';
+A {
+  font-size: 2rpx;
+}
+@import '/css/import-absolute-path/B.wxss';
