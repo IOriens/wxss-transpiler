@@ -37,6 +37,8 @@ const testFileList = function (fileList) {
     execp(getCMD(fileList)),
     transpile(fileList)
   ]).then(res => {
+    // console.log(res[0]) // wcsc res
+    // console.log(res[1]) // wxss-transpiler res
     expect(minify(res[0])).toEqual(minify(res[1]))
   })
 }
