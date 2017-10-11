@@ -15,10 +15,6 @@ const fileList = ['./css/single.wxss']
 transpile(fileList).then(res => console.log(res))
 ```
 
-## todo
-
-- support import
-
 ## Liscense
 
 MIT
