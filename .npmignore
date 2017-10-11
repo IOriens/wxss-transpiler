@@ -7,4 +7,6 @@ npm-debug.log
 yarn.lock
 
 *.test.js
+lib
+test/
 .travis.yml
