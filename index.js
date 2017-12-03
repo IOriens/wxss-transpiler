@@ -45,6 +45,6 @@ module.exports = function (files, opts) {
   const cssSource = getContent(initFile).replace(/\/\//g, ' ')
   return postcss([wxssPlugin(opts)])
     .process(cssSource)
-    .then(res => res.css.replace(/\n/g, ' '))
+    .then(res => res.css.replace(/\r?\n/g, ' '))
     .catch(err => console.log('Postcss Error:', err))
 }
