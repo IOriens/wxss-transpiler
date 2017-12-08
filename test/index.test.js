@@ -2,6 +2,7 @@
 const transpile = require('../index')
 const path = require('path')
 const CleanCSS = require('clean-css')
+const fs = require('fs')
 const cleanCSSOpt = {}
 const minify = (function () {
   const minifier = new CleanCSS(cleanCSSOpt)
@@ -10,7 +11,9 @@ const minify = (function () {
     if (res.warnings && res.warnings.length) {
       console.log('Cleancss Warning: ' + res.warnings)
     }
-    if (res.errors && res.errors.length) { throw new Error('Cleancss Error: ' + res.errors.join()) }
+    if (res.errors && res.errors.length) {
+      throw new Error('Cleancss Error: ' + res.errors.join())
+    }
     return minifier.minify(css).styles
   }
 })()
@@ -80,4 +83,10 @@ it('throw when enconter circular imported file', () => {
     './css/import-circular/C.wxss'
   ]
   expect(() => transpile(fileList)).toThrow('Circular Import')
+})
+
+it('remove newline symbol', () => {
+  const filePath = './css/differentNewline.wxss'
+  fs.writeFileSync(filePath, '.a{}\n.b{}\r.c{}\r\n.d{}')
+  transpile([filePath]).then(res => expect(res).toEqual('.a{} .b{} .c{} .d{}'))
 })
