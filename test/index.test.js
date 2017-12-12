@@ -87,6 +87,7 @@ it('throw when enconter circular imported file', () => {
 
 it('remove newline symbol', () => {
   const filePath = './css/differentNewline.wxss'
-  fs.writeFileSync(filePath, '.a{}\n.b{}\r.c{}\r\n.d{}')
-  transpile([filePath]).then(res => expect(res).toEqual('.a{} .b{} .c{} .d{}'))
+  fs.writeFileSync(filePath, '.a{color:blue;}\n.b{color:blue;}\r.c{color:blue;}\r\n.d{color:blue;}')
+  // expect.assertions(1);
+  return transpile([filePath]).then(res => expect(res).toEqual('.a{color:#00f}.b{color:#00f}.c{color:#00f}.d{color:#00f}'))
 })

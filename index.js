@@ -1,5 +1,6 @@
 const postcss = require('postcss')
 const wxssPlugin = require('postcss-wxss')
+const clean = require('postcss-clean')
 const fs = require('fs')
 const path = require('path')
 
@@ -43,8 +44,8 @@ module.exports = function (files, opts) {
   const fileList = files.slice()
   const initFile = fileList.shift()
   const cssSource = getContent(initFile).replace(/\/\//g, ' ')
-  return postcss([wxssPlugin(opts)])
+  return postcss([clean(), wxssPlugin(opts)])
     .process(cssSource)
-    .then(res => res.css.replace(/\r\n|\n|\r/g, ' '))
+    .then(res => res.css)
     .catch(err => console.log('Postcss Error:', err))
 }
