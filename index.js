@@ -43,7 +43,10 @@ module.exports = function (files, opts) {
   fileStack = []
   const fileList = files.slice()
   const initFile = fileList.shift()
-  const cssSource = getContent(initFile).replace(/\/\//g, ' ')
+  const cssFileContent = getContent(initFile)
+  const cssSource = opts && opts.keepSlash
+    ? cssFileContent
+    : cssFileContent.replace(/\/\//g, ' ')
   return postcss([clean(), wxssPlugin(opts)])
     .process(cssSource)
     .then(res => res.css)
