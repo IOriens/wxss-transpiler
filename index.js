@@ -31,7 +31,9 @@ const constructPath = function (file) {
   if (fileStack.indexOf(fullPath) === -1) {
     fileStack.push(fullPath)
   } else {
-    throw new Error('Circular Import')
+    console.log('Import Stack:')
+    console.log(fileStack)
+    throw new Error('Circular Imported File: ' + fullPath)
   }
   return fullPath
 }
@@ -58,13 +60,21 @@ module.exports = function (files, opts) {
   const initFile = fileList.shift()
   const cssFileContent = getContent(initFile)
 
+  const isAbsolutePath = path.isAbsolute(initFile)
+
+  const dir = process.cwd()
+
+  const initFilePath = isAbsolutePath
+    ? path.join(dir, initFile)
+    : path.resolve(dir, initFile)
+
   // remove "//" to remove single line comment, default: true
   const cssSource = opts && opts.keepSlash
     ? cssFileContent
     : cssFileContent.replace(/\/\//g, ' ')
 
   return postcss([clean(), wxssPlugin(opts)])
-    .process(cssSource, { from: constructPath(initFile) })
+    .process(cssSource, { from: initFilePath })
     .then(res => res.css)
     .catch(err => console.log('Postcss Error:', err))
 }
